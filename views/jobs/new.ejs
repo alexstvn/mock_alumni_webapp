@@ -1,0 +1,47 @@
+<div class="db new jobs data-form">
+  <% if (loggedIn) { %>
+    <h2>Create a new job:</h2>
+      <form action="/jobs/create" method="POST">
+
+        <input id="job-new-userId" name="userId" type="hidden" value="<%= currentUser._id %>" />
+        
+        <label for="inputTitle">Title</label>
+        <input type="text" name="title" id="inputTitle" placeholder="Title" autofocus required />
+  
+        <label for="inputCompany">Company</label>
+        <input type="text" name="company" id="inputCompany" placeholder="Company" required />
+  
+        <label for="inputLocation">Location</label>
+        <input type="text" name="location" id="inputLocation" placeholder="Location" required />
+  
+        <label for="inputDescription">Description</label>
+        <textarea name="description" id="inputDescription" placeholder="Description" required></textarea>
+  
+        <label for="inputRequirements">Requirements</label>
+        <input type="text" name="requirements" id="inputRequirements" placeholder="Requirements" required />
+  
+        <label for="inputSalary">Salary</label>
+        <input type="text" name="salary" id="inputSalary" placeholder="Salary" required />
+  
+        <label for="inputContactEmail">Contact Email</label>
+        <input type="text" name="contactEmail" id="inputContactEmail" placeholder="Contact Email" required />
+  
+        <label for="inputContactPhone">Contact Phone</label>
+        <input type="text" name="contactPhone" id="inputContactPhone" placeholder="Contact Phone" required />
+  
+        <label for="inputPostDate">Post Date</label>
+        <input type="date" name="postDate" id="inputPostDate" />
+  
+        <label for="inputDeadlineDate">Deadline Date</label>
+        <input type="date" name="deadlineDate" id="inputDeadlineDate" required />
+  
+        <label for="inputIsActive">Is Active</label>
+        <input type="checkbox" name="isActive" id="inputIsActive" />
+  
+        <!-- STOP HERE -->
+        <button type="submit">Submit</button>
+      </form>
+  <%} else {%>
+    <h2>This page is only accessible to logged in users.</h2>
+  <% } %>
+</div>

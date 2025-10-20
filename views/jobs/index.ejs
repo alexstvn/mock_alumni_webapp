@@ -1,0 +1,67 @@
+<div class = "db index jobs">
+  <h2>Jobs Table</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Company</th>
+        <th>Location</th>
+        <th>Description</th>
+        <th>Requirements</th>
+        <th>Salary</th>
+        <th>Contact Email</th>
+        <th>Contact Phone</th>
+        <th>Post Date</th>
+        <th>Deadline Date</th>
+        <th>Active</th>
+        <% if (loggedIn) { %>
+          <th>Action</th>
+        <%} %>
+      </tr>
+    </thead>
+    <tbody>
+      <% jobs.forEach(job => { %>
+        <tr>
+          <td>
+            <a href="<%= `/jobs/${job._id}` %>"> <%= job.title %> </a>
+          </td>
+          <td><%= job.company %></td>
+          <td><%= job.location %></td>
+          <td><%= job.description %></td>
+          <td><%= job.requirements %></td>
+          <td><%= job.salary %></td>
+          <td><%= job.contactEmail %></td>
+          <td><%= job.contactPhone %></td>
+          <td><%= job.postDate %></td>
+          <td><%= job.deadlineDate %></td>
+          <td><%= job.isActive %></td>
+          
+          <!-- ACTIONS -->
+          <% if (loggedIn) { %>
+            <!-- EDIT ONLY IF USER IS ADMIN OR CREATOR -->
+            <% if (currentUser && ((job.creator && currentUser._id.toString() === job.creator.toString()) || currentUser.isAdmin)) { %>
+              <td>
+                <a href="<%=`/jobs/${job._id}/edit` %>"> Edit </a>
+              </td>
+            <%}%>
+            <!-- DELETE ONLY IF USER IS ADMIN -->
+            <% if (currentUser && currentUser.isAdmin) { %>
+              <td>
+                <a
+                  href="<%= `/jobs/${job._id}/delete?_method=DELETE` %>"
+                  onclick="return confirm('Are you sure you want to delete this record?')"
+                >Delete</a>
+              </td>
+            <%}%>
+          <%} %>
+        </tr>
+      <% }); %>
+    </tbody>
+  </table>
+  <% if (loggedIn) { %>
+      <a href="/jobs/new" class="new_entry">New Entry</a>
+  <%} else {%>
+      <p class="new_entry">Only logged in users can add entries.</p>
+  <% } %>
+</div>
+

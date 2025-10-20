@@ -1,0 +1,86 @@
+<html>
+    <head>
+        <title>Brandeis Students & Alumni Association</title>
+
+        <!-- STYLING -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/style.css">
+        <link rel="icon" href="/images/BrandeisLogo.png">
+
+        <!-- FONTS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Lora:ital@0;1&family=Roboto&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <!-- Brandeis Logo -->
+            <img src="\images\BrandeisLogo.png" alt="Brandeis Logo" class="header" id="header-img">
+            
+            <!-- Header text -->
+            <section class="header" id="header-text">
+                <!-- Brandeis Heading -->
+                <h1 class="header" id="header-heading">Brandeis University</h1>
+                <!-- Brandeis Subheading -->
+                <h2 class="header" id="header-subheading">Students & Alumni Association</h2>
+            </section>
+        </header>
+
+        <!-- NAV BAR -->
+        <nav>
+            <div id="nav-links">
+                <a id="nav-home" href="/">Home</a>
+                <a id="nav-about" href="/about">About</a>
+                <a id="nav-jobs" href="/jobs">Jobs</a>
+                <a id="nav-events" href="/events">Events</a>
+                <a id="nav-contact" href="/contact">Contact</a>
+                <a id= "nav-chat" href="/chat" class="chat-icon">@</a>
+            </div>
+
+            <!-- LOGIN/LOGOUT/NEW USER BUTTONS -->
+            <div id="nav-buttons">
+                <% if (loggedIn) { %>
+                    <p>Logged in as <a href="<%=`/users/${currentUser._id}`%>"><%= currentUser.fullName %></a></p>
+                    <div id="apiToken" data-token="<%=currentUser.apiToken %>" style="display: none" ></div>
+                    <a href="/users/logout"><button type="logout" id="logout-button" class="light-button">Log Out</button></a>
+                <%} else {%>
+                    <a href="/users/new"><button type="register" id="register-button">Register</button></a>
+                    <a href="/users/login"><button type="sign-in" id="sign-in-button" class="light-button">Sign In</button></a>
+                <% } %>
+            </div>
+        </nav>
+        
+        <!-- FLASH MESSAGES -->
+        <div class="flashes">
+            <% if (flashMessages) { %> <% if (flashMessages.success) { %>
+                <div class="flash success"><%= flashMessages.success %></div>
+            <% } else if (flashMessages.error) { %>
+                <div class="flash error"><%= flashMessages.error %></div>
+            <% } %> <% } %>
+        </div>
+
+        <!-- MODAL FOR EVENTS -->
+        <%- include('events/_eventsModal') %>
+
+        <!-- BODY -->
+        <%- body%>
+    
+    <!-- FOOTER -->
+    <footer class="footer-content">
+        <p id="footer-copyright">&copy; 2023 Brandeis University</p>
+        <section id="footer-icon">
+            <a href="https://www.facebook.com" class="fa fa-facebook"></a>
+            <a href="https://www.instacom.com" class="fa fa-instagram"></a>
+            <a href="https://www.linkedin.com" class="fa fa-linkedin"></a>
+            <a href="https://www.youtube.com" class="fa fa-youtube-play"></a>
+            <a href="https://www.twitter.com" class="fa fa-twitter"></a>
+        </section>
+    </footer>
+    
+    <!-- SCRIPTS (order matters!) -->
+    <script type="text/javascript" src="/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/js/busaaApp.js"></script>
+    </body>
+</html>

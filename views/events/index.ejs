@@ -1,0 +1,75 @@
+<div class="db index events">
+  <h2>Events Table</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Location</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Online</th>
+        <th>Registration Link</th>
+        <th>Organizer</th>
+        <th>RSVPs</th>
+        <% if (loggedIn) { %>
+          <th>Action</th>
+        <%} %>
+      </tr>
+    </thead>
+    <tbody>
+      <% events.forEach(event => { %>
+        <tr>
+          <td>
+            <a href="<%= `/events/${event._id}` %>"> <%= event.title %> </a>
+          </td>
+          <td><%= event.description %></td>
+          <td><%= event.location %></td>
+          <td><%= event.startDate %></td>
+          <td><%= event.endDate %></td>
+          <td><%= event.isOnline ? 'Yes' : 'No' %></td>
+          <td><%= event.registrationLink %></td>
+          <td>
+            <% if (event.organizer) { %>
+              <a href="<%= `/users/${event.organizer._id}` %>"><%= event.organizer.fullName %></a>
+            <% } else { %>
+              USER DELETED
+            <% } %>
+          </td>
+          
+          <td>
+            <% event.RSVPs.forEach(rsvp => { %>
+              <a href="<%= `/users/${rsvp._id}` %>"><%= rsvp.fullName %></a><br>
+            <% }); %>
+          </td>
+
+          <!-- ACTIONS -->
+          <% if (loggedIn) { %> <!--ONLY IF USER IS LOGGED IN-->
+            <!-- EDIT IF USER IS ADMIN OR CREATOR -->
+            <% if (currentUser && ((event.creator && currentUser._id.toString() === event.creator.toString()) || currentUser.isAdmin)) { %>
+            <td>
+              <a href="<%=`/events/${event._id}/edit` %>"> Edit </a>
+            </td>
+            <%}%>
+            <!-- DELETE ONLY IF USER IS ADMIN -->
+            <% if (currentUser && currentUser.isAdmin) { %>
+              <td>
+                <a
+                  href="<%= `/events/${event._id}/delete?_method=DELETE` %>"
+                  onclick="return confirm('Are you sure you want to delete this record?')"
+                >Delete</a>
+              </td>
+            <%}%>
+
+          <%}%>
+        </tr>
+        <% }); %>
+      </tbody>
+  </table>  
+  
+  <% if (loggedIn) { %>
+    <a href="/events/new" class="new_entry">New Entry</a>
+  <%} else {%>
+    <p class="new_entry">Only logged in users can add entries.</p>
+  <% } %>
+</div>

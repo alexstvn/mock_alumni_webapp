@@ -1,0 +1,26 @@
+<% if(currentUser) { %>
+  <div class="chat-container">
+    <h1>Chat</h1>
+    <form id="chatForm">
+      <!-- INPUT FOR CHAT -->
+      <input id="chat-input" type="text" />
+      <input
+        id="chat-user-name"
+        type="hidden"
+        value="<%= currentUser.fullName %>"
+      />
+      <input id="chat-user-id" type="hidden" value="<%= currentUser._id %>" />
+  
+      <input type="submit" value="Send" class="light-button"/>
+    </form>
+
+    <!-- DISPLAY MESSAGES FOR CHAT -->
+    <div id="chat"></div>
+  </div>
+  <%} else {%>
+    <div class="chat-container chat-container-locked">
+      <h1>Please sign in.</h1>
+      <p><em>Please sign in to access this feature.</em></p>
+    </div>
+  <% } %>
+  

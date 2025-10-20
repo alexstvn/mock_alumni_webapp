@@ -1,0 +1,81 @@
+<div class="db show events">
+  <h1>Event Data for <%= event.title %></h1>
+  <table class="table">
+    <tr>
+      <th>Title</th>
+      <td><%= event.title %></td>
+    </tr>
+    <tr>
+      <th>Description</th>
+      <td><%= event.description %></td>
+    </tr>
+    <tr>
+      <th>Location</th>
+      <td><%= event.location %></td>
+    </tr>
+    <tr>
+      <th>Start Date</th>
+      <td><%= event.startDate %></td>
+    </tr>
+    <tr>
+      <th>End Date</th>
+      <td><%= event.endDate %></td>
+    </tr>
+    <tr>
+      <th>Online</th>
+      <td><%= event.isOnline ? 'Yes' : 'No' %></td>
+    </tr>
+    <tr>
+      <th>Registration Link</th>
+      <td><%= event.registrationLink %></td>
+    </tr>
+    
+    <tr>
+      <th>Organizer</th>
+      <td>
+        <% if (event.organizer) { %>
+          <a href="<%= `/users/${event.organizer._id}` %>"><%= event.organizer.fullName %></a>
+        <% } else { %>
+          USER DELETED
+        <% } %>
+      </td>
+    </tr>
+    <tr>
+      <th>RSVPs</th>
+      <td>
+        <% event.RSVPs.forEach(rsvp => { %>
+          <a href="<%= `/users/${rsvp._id}` %>"><%= rsvp.fullName %></a><br>
+        <% }); %>
+      </td
+    </tr>
+  </table>
+
+  <!-- INDICATE INTEREST FORM -->
+  <!-- <form action="<%= `/events/${event._id}/attend` %>" method="POST">
+    <label for="interestedUserName">This User is Interested:</label>
+    <input type="text" id="interestedUserName" name="interestedUserName" required>
+    <button type="submit">Indicate Interest</button>
+  </form> -->
+  
+  <!-- ACTIONS -->
+  <div>
+    <a href="/events">View all events</a>
+  </div>
+  <!-- EDIT ONLY IF USER IS ADMIN OR CREATOR -->
+  <% if (currentUser && ((event.creator && currentUser._id.toString() === event.creator.toString()) || currentUser.isAdmin)) { %>
+    <div>
+      <a href="<%=`/events/${event._id}/edit`%>">Edit Event Details</a>
+    </div>
+  <%}%>
+  <!-- DELETE ONLY IF USER IS ADMIN -->
+  <% if (currentUser && currentUser.isAdmin) { %>
+    <div>
+      <a
+        href="<%= `/events/${event._id}/delete?_method=DELETE` %>"
+        onclick="return confirm('Are you sure you want to delete this record?')"
+        >Delete</a
+      >
+    </div>  
+  <%}%>
+  
+</div>

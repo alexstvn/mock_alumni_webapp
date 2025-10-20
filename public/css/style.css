@@ -1,0 +1,488 @@
+:root {
+    --primary-color-light: #ECECEC;
+    --secondary-color-light: #AAABB8;
+    --primary-color-dark: #2C2C54;
+    --secondary-color-dark: #474787;
+    
+    --ff-primary: 'Roboto', sans-serif;
+    --ff-secondary:  'Lora', serif;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: var(--ff-secondary);
+    margin: 0;
+}
+
+body {
+    background-color: var(--primary-color-light);
+}
+
+button {
+    transition-duration: 0.4s;
+    
+    /* SPACING/SHAPE */
+    margin-top: 10px;
+    border-radius: 10%;
+    padding: 8px 10px;
+}
+
+/* Button Styling */
+.dark-button {
+    
+    /* COLORING/STYLE */
+    background-color: var(--primary-color-dark);
+    color: var(--primary-color-light);
+    font-family: var(--ff-secondary);
+    font-weight: bold;
+}
+
+.dark-button:hover, .light-button:hover {
+    background-color: var(--primary-color-light);
+    color: var(--secondary-color-dark);
+}
+
+.light-button {
+    /* COLORING/STYLE */
+    background-color: var(--secondary-color-dark);
+    color: var(--primary-color-light);
+    border-color: (var(--primary-color-light));
+}
+
+/* ------------------ HEADER ------------------ */
+header {
+    background-color: var(--secondary-color-light);
+    display: flex;
+    padding: 1em;
+    align-items: center;
+}
+
+header h1, header h2 {
+    color: var(--primary-color-dark);
+    font-family: var(--ff-secondary);
+    margin: 0;
+}
+
+header h1 {
+    font-size: 50px;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
+}
+
+header h2 {
+    font-size: 110%;
+    font-family: var(--ff-primary);
+    padding-left: 3em;
+}
+
+header img {
+    padding-left: 2em;
+}
+
+/* ------------------ NAV BAR ------------------ */
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* This will separate the two divs */
+    background-color: var(--primary-color-dark);
+    padding: 0 2em;
+    height: 3em;
+}
+
+/* NAV LINKS */
+nav a {
+    text-decoration: none;
+    inline-size: block;
+}
+
+nav #nav-links a {
+    color: var(--primary-color-light);
+    font-family: var(--ff-primary);
+    padding: 1em;
+}
+
+nav #nav-links a:hover {
+    background-color: var(--secondary-color-dark);
+    color: var(--secondary-color-light);
+}
+
+/* NAV BUTTONS */
+#nav-buttons {
+    align-items: right;
+    display: flex;
+    gap: 10px; /* Adjust the space between buttons */
+    align-items: center;
+}
+
+nav button {
+    transition-duration: 0.4s;
+    
+    /* SPACING/SHAPE */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 10%;
+    padding: 8px 10px;
+    
+    /* TEXT STYLE */
+    font-size: 14px;
+    font-family: var(--ff-secondary);
+    font-weight: bold;
+}
+
+#register-button:hover, #sign-in-button:hover, #logout-button:hover, #close-button:hover {
+    background-color: var(--primary-color-light);
+    color: var(--secondary-color-dark);
+}
+
+#register-button {
+    /* COLORING/STYLE */
+    background-color: var(--primary-color-dark);
+    color: var(--primary-color-light);
+    border-color: (var(--primary-color-light));
+}
+
+#sign-in-button a {
+    transition-duration: 0.4s;
+    color: var(--primary-color-light);
+}
+
+nav p, nav p a {
+    text-decoration: none;
+    color: var(--primary-color-light);
+}
+/* ------------------ EJS --------------- */
+#modal-button {
+    font-size: 14px;
+}
+
+.modal-footer {
+    padding: 0em 1em;
+}
+
+.button-container, .modal {
+    padding: 1em;
+}
+
+.event {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; 
+}
+
+.event-details {
+    flex: 1;
+    margin-right: 10px; /* Adjust margin between title and description */
+}
+
+.event-title {
+    font-weight: bold;
+}
+
+/* ------------------ GENERAL BODY, ABOUT, CONTACT ------------------ */
+/* BODY - general */
+.content {
+    padding: 2em;
+    min-height: 80vh;
+    padding-bottom: 6em;
+}
+
+.content *:not(input) {
+    padding: 0.5em; 
+    color: var(--primary-color-dark);
+}
+
+.content h2 em {
+    color: var(--secondary-color-dark);
+    font-size: 1.25em;
+    padding: 0;
+}
+
+/* BODY - index */
+
+.flashes {
+    text-align: center;
+    padding: 1em;
+}
+
+#content-index p {
+    width: 60%;
+    float: left;
+    padding-bottom: 2em;
+}
+
+/* BODY - about */
+#content-about p {
+    font-size: 20px;
+}
+
+#desc-about {
+    width: 60%;
+    float: left;
+}
+
+#img-about {
+    width: 30%;
+    float: right;
+    
+    /* Keep from growing too big */
+    max-height: 320px;
+    max-width: 320px;
+}
+
+/* BODY - contact */
+#content-contact {
+    display: flex;
+}
+
+#info-contact {
+    width: 50%;
+}
+
+/* CONTACT FORM */
+
+/* Name/Email Styling */
+#short-fields-form {
+    display: flex;
+}
+#name-form-contact, #email-form-contact {
+    width: 50%;
+}
+
+#name-form-contact input, #email-form-contact input {
+    border: none;
+    border-bottom: 2px solid var(--secondary-color-dark);
+    background-color: transparent;
+}
+
+@media (max-width: 1000px) {
+    #short-fields-form {
+        display: block; /* Display the fields vertically */
+    }
+    
+    #name-form-contact, #email-form-contact {
+        width: 100%; 
+        margin-bottom: 1em;
+    }
+}
+
+/* Message Styling */
+#message-form-contact {
+    width: 100%;
+    height: 150px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    resize: none;
+    margin-top: 1em;
+}
+
+#submit-button {
+    font-size: 18px;
+}
+
+#button-form {
+    align-items: center;
+    display: flex; 
+    flex-direction: column; /*  stack vertically */
+    justify-content: center; /* center horizontally and vertically */
+}
+
+/* ------------------ JOBS, EVENTS, USERS ------------------ */
+/* General Database Styling */
+.db {
+    padding: 1em;
+}
+
+.db h2, .db h1{
+    padding: 1em;
+    display: block;
+}
+
+.db table {
+    padding: 10px;
+}
+
+.db th,.db td { 
+    font-family: var(--ff-primary);
+    padding: 10px;
+    font-size: 14px;
+}
+
+.db.show th {
+    text-align: right;
+}
+
+.db td { 
+    word-break: normal;
+}
+
+.db a {
+    font-family: var(--ff-primary);
+    text-decoration: none;
+    color: var(--secondary-color-dark);
+}
+
+.db a:visited {
+    color: var(--secondary-color-dark);
+}
+
+.db a:hover {
+    color: var(--secondary-color-dark);
+    font-weight: bold;
+}
+
+.password-cell {
+    max-width: 100px; /* Set a maximum width for the column */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Forms */
+.data-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 400px;
+}
+
+.data-form form {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 800px; 
+}
+
+.data-form form label,
+.data-form form input,
+.data-form form select,
+.data-form form textarea {
+    width: calc(50% - 20px); 
+    margin: 5px 10px;
+    box-sizing: border-box;
+}
+
+.data-form form textarea {
+    height: 100px; 
+}
+
+.data-form button[type="submit"] {
+    margin-top: 20px;
+}
+
+.db input, textarea, select, .sign-in input {
+    border: none;
+    border-bottom: 2px solid var(--secondary-color-dark);
+    background-color: transparent;
+}
+
+.new_entry {
+    display: block;
+    text-align: center;
+}
+
+/* Button Styling */
+.db .submitButton {
+    align-items: center;
+}
+
+.db button {
+    transition-duration: 0.4s;
+    
+    /* SPACING/SHAPE */
+    margin-top: 10px;
+    border-radius: 10%;
+    padding: 8px 10px;
+    
+    /* COLORING/STYLE */
+    background-color: var(--primary-color-dark);
+    color: var(--primary-color-light);
+    font-size: 14px;
+    font-family: var(--ff-secondary);
+    font-weight: bold;
+}
+
+.db button:hover {
+    background-color: var(--primary-color-light);
+    color: var(--secondary-color-dark);
+}
+
+
+/* Styling Form */
+#form-contact h3 {
+    text-align: center;
+}
+
+#form-contact {
+    width: 50%;
+    align-items: center;
+    padding: 3em;
+}
+
+/* LOGIN PAGE */
+.sign-in h1 {
+    text-align: center;
+    color: var(--primary-color-dark);
+    padding-bottom: 1em;
+}
+
+.sign-in form, .sign-in input, .sign-in button{
+    padding: 1em;
+    font-size: 1em;
+}
+
+.sign-in label {
+    display: flex;
+    align-items: center;
+    height: 55px; /* Adjust as needed */
+}
+
+/* ------------------ CHAT ------------------ */
+.chat-container {
+    padding: 2em;
+    min-height: 400px;
+}
+
+.chat-container-locked * {
+    text-align: center;
+    color: var(--primary-color-dark);
+}
+
+#chat li {
+    list-style-type: none;
+}
+/* ------------------ FOOTER ------------------ */
+footer {
+    /* Coloring */
+    background-color: var(--secondary-color-dark);
+    color: var(--primary-color-light);
+    
+    /* Layout */
+    display: flex;
+    position: relative;
+    bottom: 0;
+    
+    /* Alignment */
+    justify-content: center;
+    align-items: center;
+    
+    /* Space */
+    padding: 2em;
+    width: 100%;
+}
+
+#footer-copyright {
+    margin: 0;
+    width: 50%;
+    font-size: 17px;
+}
+
+.fa {
+    color: var(--primary-color-light);
+    font-size: 1.5em;
+    text-decoration: none;
+    float: right;
+    padding: 0.5em;
+}

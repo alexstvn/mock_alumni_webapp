@@ -1,0 +1,38 @@
+<div class="db new events data-form">
+  <% if (loggedIn) { %>
+    <h2>Create a new event:</h2>
+      <form action="/events/create" method="POST">
+        
+        <input id="job-new-userId" name="userId" type="hidden" value="<%= currentUser._id %>" />
+
+        <label for="inputTitle">Title</label>
+        <input type="text" name="title" id="inputTitle" placeholder="Title" autofocus />
+  
+        <label for="inputDescription">Description</label>
+        <textarea name="description" id="inputDescription" placeholder="Description" ></textarea>
+  
+        <label for="inputLocation">Location</label>
+        <input type="text" name="location" id="inputLocation" placeholder="Location"  />
+  
+        <label for="inputStartDate">Start Date</label>
+        <input type="datetime-local" name="startDate" id="inputStartDate" required />
+  
+        <label for="inputEndDate">End Date</label>
+        <input type="datetime-local" name="endDate" id="inputEndDate" required />
+  
+        <label for="inputIsOnline">Online Event</label>
+        <input type="checkbox" name="isOnline" id="inputIsOnline" />
+  
+        <label for="inputRegistrationLink">Registration Link</label>
+        <input type="text" name="registrationLink" id="inputRegistrationLink" placeholder="Registration Link" />
+  
+        <label for="inputOrganizer">Organizer</label>
+        <input type="text" name="organizerName" id="inputOrganizer" placeholder="Organizer" required />
+  
+        <!-- INPUT STOPS HERE -->
+        <button type="submit">Submit</button>
+      </form>
+  <%} else {%>
+    <h2>This page is only accessible to logged in users.</h2>
+  <% } %>
+</div>

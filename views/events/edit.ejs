@@ -1,0 +1,34 @@
+<div class="db edit data-form">
+  <% if (currentUser && ((event.creator && currentUser._id.toString() === event.creator.toString()) || currentUser.isAdmin)) { %>
+    <h2>Edit Event:</h2>
+    <form method="POST" action="<%=`/events/${event._id}/update?_method=PUT`%>">
+      <label for="inputTitle">Title</label>
+      <input type="text" name="title" id="inputTitle" value="<%= event.title %>" placeholder="Title" autofocus required />
+      
+      <label for="inputDescription">Description</label>
+      <textarea name="description" id="inputDescription" placeholder="Description"><%= event.description %></textarea>
+      
+      <label for="inputLocation">Location</label>
+      <input type="text" name="location" id="inputLocation" value="<%= event.location %>" placeholder="Location" required />
+      
+      <label for="inputStartDate">Start Date</label>
+      <input type="text" name="startDate" id="inputStartDate" value="<%= event.startDate %>" placeholder="Start Date" required />
+      
+      <label for="inputEndDate">End Date</label>
+      <input type="text" name="endDate" id="inputEndDate" value="<%= event.endDate %>" placeholder="End Date" required />
+      
+      <label for="inputIsOnline">Online</label>
+      <input type="checkbox" name="isOnline" id="inputIsOnline" <% if (event.isOnline) { %>checked<% } %> />
+      
+      <label for="inputRegistrationLink">Registration Link</label>
+      <input type="text" name="registrationLink" id="inputRegistrationLink" value="<%= event.registrationLink %>" placeholder="Registration Link" />
+      
+      <label for="inputOrganizer">Organizer</label>
+      <input type="text" name="organizerName" id="inputOrganizer" value="<% if (event.organizer) { %> <%= event.organizer.fullName %> <% } else { %>USER DELETED<% } %>" placeholder="Organizer" required />
+      
+      <button type="submit">Update</button>
+    </form>
+  <%} else {%>
+    <h2>This page is only accessible to logged in users who created this job or is the Admin.</h2>
+  <% } %>
+</div>
